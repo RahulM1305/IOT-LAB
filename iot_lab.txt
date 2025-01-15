@@ -241,3 +241,48 @@ void loop()
   
 }
 
+
+//Soil sensor 
+
+int sensor_pin=A0;
+void setup()
+{
+  pinMode(sensor_pin, INPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+}
+
+void loop()
+{
+  int sensor_data=analogRead(sensor_pin);
+  Serial.println(sensor_data);
+  if(sensor_data>=1000){
+  	digitalWrite(2, HIGH);
+  	digitalWrite(3, LOW);
+  	digitalWrite(4, LOW);
+    Serial.println("No Moisture");
+    delay(1000);
+  }
+  else if(sensor_data<=700 && sensor_data>=630 ){
+  	digitalWrite(2, LOW);
+  	digitalWrite(3, HIGH);
+  	digitalWrite(4, LOW);
+    Serial.println("There is some Moisture");
+    delay(1000);
+  }
+  else if(sensor_data<=600 ){
+  	digitalWrite(2, LOW);
+  	digitalWrite(3, LOW);
+  	digitalWrite(4, HIGH);
+    Serial.println("Soil is wet");
+    delay(1000);
+  }
+  
+  
+  
+   
+  
+}
+
+

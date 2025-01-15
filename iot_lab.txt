@@ -42,3 +42,102 @@ void loop()
 ![2](https://github.com/user-attachments/assets/4ed654fd-ad65-452f-84db-8eb6a4cbdbbd)
 
 
+//3
+
+void setup()
+{
+  pinMode(2, OUTPUT);
+  Serial.begin(9600);
+  while(!Serial);
+  Serial.println("Input 1 to TURN LED ON and 2 to OFF");
+}
+
+void loop()
+{
+  if(Serial.available()){
+  	int state=Serial.parseInt();
+    if(state==1){
+      digitalWrite(2, HIGH);
+      Serial.println("Command completed LED ON");
+    }
+    if(state==2){
+      digitalWrite(2, LOW);
+      Serial.println("Command completed LED OFF");
+    }
+  }
+  
+}
+
+//4
+
+int led=9;
+int brightness=0;
+int fadeAmount=5;
+void setup()
+{
+  pinMode(led, OUTPUT);
+  
+}
+
+void loop()
+{
+  analogWrite(led,brightness);
+  brightness=brightness+fadeAmount;
+  if(brightness==0|| brightness==125){
+  	fadeAmount=-fadeAmount;
+  }
+  delay(200);
+  
+}
+
+
+//5
+int potPin=A0;
+int gPin=9;
+int potVal;
+float LEDVal;
+void setup()
+{
+  pinMode(potPin, INPUT);
+  pinMode(gPin, OUTPUT);
+  Serial.begin(9600);
+  
+}
+
+void loop()
+{
+  potVal=analogRead(potPin);
+  LEDVal=(255./1023.)*potVal;
+  analogWrite(gPin,LEDVal);
+  delay(500);
+  Serial.println(LEDVal);
+  
+}
+
+
+// 6
+
+void setup()
+{
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(7, HIGH);
+  delay(4500); 
+  digitalWrite(5, LOW);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, LOW);
+  delay(2000); 
+  digitalWrite(5, HIGH);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  delay(2800); 
+}
+
+

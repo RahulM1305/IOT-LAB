@@ -1,0 +1,44 @@
+
+//1
+void setup()
+{
+  pinMode(7, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(7, HIGH);
+  delay(5000); // Wait for 1000 millisecond(s)
+  digitalWrite(7, LOW);
+  delay(5000); // Wait for 1000 millisecond(s)
+}
+
+![1](https://github.com/user-attachments/assets/3acb9b3d-2dc9-42d3-8da2-d7c778e697c8)
+
+
+
+//2
+#define LED_PIN 2
+#define MICROSWITCH_PIN 5
+void setup()
+{
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(MICROSWITCH_PIN, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  if(digitalRead(MICROSWITCH_PIN)==HIGH){
+  	digitalWrite(LED_PIN, HIGH);
+    Serial.println(1);
+  }
+  else{
+    digitalWrite(LED_PIN, LOW);
+    Serial.println(0);
+  }
+}
+
+![2](https://github.com/user-attachments/assets/4ed654fd-ad65-452f-84db-8eb6a4cbdbbd)
+
+

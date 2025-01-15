@@ -278,11 +278,38 @@ void loop()
     Serial.println("Soil is wet");
     delay(1000);
   }
-  
-  
-  
    
   
+}
+
+//8
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(5, OUTPUT);
+  pinMode(7, OUTPUT);
+}
+
+void loop()
+{
+  int v=analogRead(A0);
+  Serial.println(v);
+  delay(300);
+  if(v<100){
+    digitalWrite(7, LOW);
+    digitalWrite(5, HIGH);
+    delay(300);
+    Serial.println("MOTION DETECTED");
+    digitalWrite(5, LOW);
+  }
+  else{
+    digitalWrite(7, HIGH);
+    digitalWrite(5, LOW);
+  }
+    
+  
+ 
 }
 
 

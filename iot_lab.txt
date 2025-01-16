@@ -353,3 +353,32 @@ void loop()
 }
 
 
+//11a
+int smoke;
+
+void setup(){
+	pinMode(11, OUTPUT);
+	pinMode(12, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop(){
+	smoke=analogRead(A0);
+    Serial.println("SMOKE Sensor");
+    Serial.println(smoke);
+    delay(1000);
+    if(smoke>250){
+        digitalWrite(11, HIGH);
+        digitalWrite(12, HIGH);
+        delay(1000);
+        digitalWrite(12, LOW);
+        Serial.println("SMOKE DETECTED");
+    }
+    else{
+        digitalWrite(11, HIGH);
+        digitalWrite(12, LOW);
+        Serial.println("SMOKE NOT DETECTED");
+    }
+}
+
+

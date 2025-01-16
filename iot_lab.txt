@@ -382,3 +382,31 @@ void loop(){
 }
 
 
+//12
+#include<Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+
+void setup() {
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0,0);
+  lcd.print("MVJ IOT LAB");
+  lcd.setCursor(2,1);
+}
+
+void loop() {
+  int sensorValue=analogRead(A0);
+  float voltage=sensorValue*(5,0/1023.0);
+  float temperature=voltage*100;
+  lcd.print("T:");
+  lcd.print(temperature);
+  lcd.print(char(223));
+  lcd.print("C:");
+  delay(800);
+
+}
+
+
+

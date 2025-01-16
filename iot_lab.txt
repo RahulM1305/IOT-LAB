@@ -384,29 +384,58 @@ void loop(){
 
 //12
 #include<Wire.h>
+#include <DHT.h>
 #include <LiquidCrystal_I2C.h>
+
 LiquidCrystal_I2C lcd(0x27,16,2);
+#define DHTPIN 8
+#define DHTTYPE DHT11
+DHT dht(DHTPIN,DHTTYPE);
+
+int h;
+int t;
+
 
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("Temp and hum sensor");
+  dht.begin();
   lcd.init();
   lcd.backlight();
-  lcd.setCursor(0,0);
-  lcd.print("MVJ IOT LAB");
-  lcd.setCursor(2,1);
+  
 }
 
 void loop() {
-  int sensorValue=analogRead(A0);
-  float voltage=sensorValue*(5,0/1023.0);
-  float temperature=voltage*100;
+  h=dht.readHumidity();
+  t=dht.readTemperature();
+
+  Serial.print("Humidity:");
+  Serial.print(h);
+  Serial.print("%,TEMP:");
+  Serial.print(t);
+  Serial.print("C");
+
+  lcd.setCursor(0,0);
+  lcd.print("NOW TEMP");
+  lcd.setCursor(0,1);
   lcd.print("T:");
-  lcd.print(temperature);
+  lcd.print(t);
   lcd.print(char(223));
-  lcd.print("C:");
-  delay(800);
+  lcd.print("C");
+  lcd.setCursor(6,1);
+  lcd.print("2025");
+
+  lcd.setCursor(11,1);
+  lcd.print("H:");
+  lcd.print(h);
+  lcd.print("%");
+
+
+  delay(1000);
 
 }
+
 
 
 
